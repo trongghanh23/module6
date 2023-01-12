@@ -49,8 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .disable().
                 authorizeRequests()
-                .antMatchers("/api/public/**"
-//                        "/api/customer/**",
+                .antMatchers("/api/public/**",
+                        "/api/customer/**"
 //                        "/api/smartphone/**",
 //                        "/oauth/google",
 //                        "/api/booking/**"

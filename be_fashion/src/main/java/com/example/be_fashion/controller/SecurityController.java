@@ -2,17 +2,13 @@ package com.example.be_fashion.controller;
 
 import com.example.be_fashion.jwt.JwtTokenUtil;
 import com.example.be_fashion.model.decentralization.User;
-import com.example.be_fashion.payload.reponse.MessageResponse;
+
 import com.example.be_fashion.payload.request.LoginRequest;
 import com.example.be_fashion.payload.request.LoginResponse;
 import com.example.be_fashion.service.decentralization.IRoleService;
 import com.example.be_fashion.service.decentralization.impl.MyUserDetailService;
 import com.example.be_fashion.service.decentralization.impl.MyUserDetails;
 import com.example.be_fashion.service.decentralization.impl.UserService;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,17 +22,20 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Controller
+
 @CrossOrigin("*")
 @RequestMapping("/api/public")
+@RestController
 public class SecurityController {
+
+    @GetMapping("/test")
+    public String test() {
+        return "ok";
+    }
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -53,7 +52,7 @@ public class SecurityController {
     @Autowired
     private MyUserDetailService myUserDetailService;
 
-    @PostMapping("/login")
+    @PostMapping("/login/")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));

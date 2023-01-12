@@ -1,52 +1,29 @@
-<body>
-<div class="container mb-4 ">
-  <div class="row" style="margin-top: 150px">
-    <div class="col-lg-4"></div>
-    <span class="border border-white w-50 ">
-    <div class="col-lg-4 ">
-
-      <form class="border-danger" [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
-        <div class="text-center"><h4 >ĐĂNG NHẬP</h4></div>
-        <div class="mb-3 mt-3">
-          <label class="form-label">Tên đăng nhập
-            <span class="text-danger"
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" xmlns="http://www.w3.org/1999/html">
+  <div id="login-box">
+    <div class="left">
+      <h1>Đăng nhập</h1>
+      <div> <span class="text-danger"
                   *ngIf="formGroup.controls.username.hasError('required')
                   && formGroup.controls.username.dirty">
             Vui lòng nhập tài khoản !</span>
-          </label>
-          <input class="input100" type="text" formControlName="username" >
-        </div>
-        <div class="mb-3">
-          <label  class="form-label">Mật khẩu
-            <span class="text-danger"
-                  *ngIf="formGroup.controls.password.hasError('required')
+        <input type="text" name="username" placeholder="Username" formControlName="username"/></div>
+      <div> <span class="text-danger"
+                         *ngIf="formGroup.controls.password.hasError('required')
                   && formGroup.controls.password.dirty">
             Vui lòng nhập mật khẩu !</span>
-          </label>
-          <input class="input100" type="password" formControlName="password">
+        <input type="password" name="password" placeholder="Password" formControlName="password"/></div>
 
-        </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Nhớ mật khẩu</label>
-        </div>
-        <button type="submit " class="btn btn-success">Đăng nhập</button>
-      </form>
-      <div  class="form-text text-light mt-4">Chưa có tài khoản ? Hãy
-        <button type="submit" class="btn btn-success">Đăng ký</button></div>
-      <div  class="form-text text-light mt-2">Quên mật khẩu?</div>
-      <div class="mb-3 mt-3">
-        <label for="matkhau" class="form-label">Vui lòng nhập email</label>
-        <input type="email" class="form-control" id="matkhau" aria-describedby="emailHelp">
-      </div>
-      <button type="submit " class="btn btn-success">Lấy lại mật khẩu</button>
-
+      <input type="submit" name="signup_submit" value="Đăng nhập" />
+      <p>Bạn chưa có tài khoản ? Hãy</p>
+      <input type="submit" name="signup_submit" value="Đăng ký"/>
     </div>
-      </span>
 
-    <div class="col-lg-4"></div>
+    <div class="right">
+      <span class="loginwith">Đăng nhập với<br/>mạng xã hội</span>
+
+      <button class="social-signin facebook">Đăng nhập với facebook</button>
+      <button class="social-signin google">Đăng nhập với Google+</button>
+    </div>
+    <div class="or">OR</div>
   </div>
-
-</div>
-
-</body>
+</form>

@@ -1,24 +1,25 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import Swal from 'sweetalert2';
-import {Title} from '@angular/platform-browser';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {SocialUser} from 'angularx-social-login';
 import {AuthenticationService} from '../../service/authentication.service';
-import {TokenStorageService} from '../../service/token-storage.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 import {AuthService} from '../../service/auth.service';
-
+import {ActivatedRoute, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   formGroup: FormGroup;
   username: string;
   roles: string[] = [];
   returnUrl: string;
-
+  socialUser: SocialUser;
 
   constructor(
     private auth: AuthenticationService,
@@ -32,8 +33,7 @@ export class LoginComponent implements OnInit {
     title.setTitle('Đăng nhập');
     this.formGroup = this.formBuild.group({
         username: [''],
-        password: [''],
-        rememberMe: ['']
+        password: ['']
       }
     );
   }
@@ -42,8 +42,7 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '';
     this.formGroup = this.formBuild.group({
         username: ['', Validators.required],
-        password: ['', Validators.required],
-        remember_me: ['']
+        password: ['', Validators.required]
       }
     );
 
@@ -70,7 +69,6 @@ export class LoginComponent implements OnInit {
         this.username = this.tokenStorageService.getUser().username;
         this.roles = this.tokenStorageService.getUser().roles;
         this.formGroup.reset();
-
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -98,9 +96,4 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   }
 
-// whenExit() {
-//   this.tokenStorageService.signOut();
-//   this.username = '';
-//   this.router.navigateByUrl('');
-// }
 }

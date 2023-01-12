@@ -1,6 +1,6 @@
 package com.example.be_fashion.dto;
 
-public interface IListFashion {
+public interface IListFashionDto {
     Integer getId();
     String getNameFashion();
     String getUrl();
