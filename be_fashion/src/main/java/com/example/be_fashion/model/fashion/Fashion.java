@@ -13,6 +13,8 @@ public class Fashion {
     private String producer;
     private String material;
 
+    private int price;
+
     @JoinColumn(name = "idFashionType",referencedColumnName = "id")
     @ManyToOne
     private FashionType fashionType;
@@ -32,12 +34,13 @@ public class Fashion {
     }
 
 
-    public Fashion(Integer id, String name, String image, String producer, String material, FashionType fashionType, SeasonalFashion seasonalFashion, Size size, boolean isDelete) {
+    public Fashion(Integer id, String name, String image, String producer, String material, int price, FashionType fashionType, SeasonalFashion seasonalFashion, Size size, boolean isDelete) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.producer = producer;
         this.material = material;
+        this.price = price;
         this.fashionType = fashionType;
         this.seasonalFashion = seasonalFashion;
         this.size = size;
@@ -114,5 +117,13 @@ public class Fashion {
 
     public void setMaterial(String material) {
         this.material = material;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

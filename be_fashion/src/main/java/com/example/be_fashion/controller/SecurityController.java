@@ -31,12 +31,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/public")
 @RestController
 public class SecurityController {
-
-    @GetMapping("/test")
-    public String test() {
-        return "ok";
-    }
-
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -51,7 +45,10 @@ public class SecurityController {
 
     @Autowired
     private MyUserDetailService myUserDetailService;
-
+    @GetMapping("/test")
+    public String test() {
+        return "ok";
+    }
     @PostMapping("/login/")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(

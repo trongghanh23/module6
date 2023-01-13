@@ -1,26 +1,26 @@
 <body>
 <main class="main">
 
-  <section class="card-area">
+  <section class="card-area"*ngIf="action">
 
     <!-- Card: City -->
-    <section class="card-section">
+    <section class="card-section" *ngFor="let item of (fashionList$ |async)">
       <div class="card">
         <div class="flip-card">
           <div class="flip-card__container">
             <div class="card-front">
               <div class="card-front__tp card-front__tp--city">
-               <img style="height: 200px;width: 250px" src="https://aothudong.com/upload/product/atd-467/ao-khoac-phao-lot-long-cao-cap.jpg">
+               <img style="height: 200px;width: 250px" src="{{item.image}}">
               </div>
 
               <div class="card-front__bt">
                 <p class="card-front__text-view card-front__text-view--city">
-                  Áo hàn quốc
+                 {{item.nameFashion}}
                 </p>
               </div>
             </div>
             <div class="card-back">
-              <img style="height: 240px;width: 240px" src="https://aothudong.com/upload/product/atd-467/ao-khoac-phao-lot-long-cao-cap-3.jpg">
+              <img style="height: 240px;width: 240px" src="{{item.image}}">
             </div>
           </div>
         </div>
@@ -28,316 +28,33 @@
         <div class="inside-page">
           <div class="inside-page__container">
             <h3 class="inside-page__heading inside-page__heading--city">
-              Áo khoác
+              {{item.nameFashion}}
             </h3>
             <p>
-              Xuất xứ: Quảng Châu
+             Xuất xứ:{{item.producer}}
             </p>
             <p>
-              Sản xuất:	Công nghiệp
+              Chất liệu:	{{item.material}}
             </p>
             <p >
-              Giá: 799.000 Đ
-              <span class="lb-small-price">(880.000 Đ)</span>
+              Giá: {{item.price}}
+              <span class="lb-small-price">({{item.price}})</span>
             </p>
             <a routerLink="/detail" class="inside-page__btn inside-page__btn--ski">View deals</a>
           </div>
         </div>
       </div>
     </section>    <!-- Card: City -->
-    <section class="card-section">
-      <div class="card">
-        <div class="flip-card">
-          <div class="flip-card__container">
-            <div class="card-front">
-              <div class="card-front__tp card-front__tp--city">
-               <img style="height: 200px;width: 250px" src="https://aothudong.com/upload/product/atd-426/ao-phao-nam-xanh-dep-hang-hieu.jpg">
-              </div>
 
-              <div class="card-front__bt">
-                <p class="card-front__text-view card-front__text-view--city">
-                  Áo ấm
-                </p>
-              </div>
-            </div>
-            <div class="card-back">
-              <img style="height: 240px;width: 240px" src="https://aothudong.com/upload/product/atd-426/ao-phao-nam-xanh-dep-hang-hieu-3.jpg">
-            </div>
-          </div>
-        </div>
-
-        <div class="inside-page">
-          <div class="inside-page__container">
-            <h3 class="inside-page__heading inside-page__heading--city">
-              Áo khoác
-            </h3>
-            <p>
-              Xuất xứ: Quảng Châu
-            </p>
-            <p>
-              Sản xuất:	Công nghiệp
-            </p>
-            <p >
-              Giá: 799.000 Đ
-              <span class="lb-small-price">(880.000 Đ)</span>
-            </p>
-            <a href="#" class="inside-page__btn inside-page__btn--ski">View deals</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="card-section">
-      <div class="card">
-        <div class="flip-card">
-          <div class="flip-card__container">
-            <div class="card-front">
-              <div class="card-front__tp card-front__tp--city">
-               <img style="height: 200px;width: 250px" src="https://aothudong.com/upload/product/atd-425/ao-phao-nam-ghi-dep-hang-hieu.jpg">
-              </div>
-
-              <div class="card-front__bt">
-                <p class="card-front__text-view card-front__text-view--city">
-                  Áo hàn quốc
-                </p>
-              </div>
-            </div>
-            <div class="card-back">
-              <img style="height: 240px;width: 240px" src="https://aothudong.com/upload/product/atd-425/ao-phao-nam-ghi-dep-hang-hieu-3.jpg">
-            </div>
-          </div>
-        </div>
-
-        <div class="inside-page">
-          <div class="inside-page__container">
-            <h3 class="inside-page__heading inside-page__heading--city">
-              Áo khoác
-            </h3>
-            <p>
-              Xuất xứ: Quảng Châu
-            </p>
-            <p>
-              Sản xuất:	Công nghiệp
-            </p>
-            <p >
-              Giá: 799.000 Đ
-              <span class="lb-small-price">(880.000 Đ)</span>
-            </p>
-            <a href="#" class="inside-page__btn inside-page__btn--ski">View deals</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="card-section">
-      <div class="card">
-        <div class="flip-card">
-          <div class="flip-card__container">
-            <div class="card-front">
-              <div class="card-front__tp card-front__tp--city">
-               <img style="height: 200px;width: 250px" src="https://aothudong.com/upload/product/atd-462/ao-phao-dang-dai-nam-tre-trung.jpg">
-              </div>
-
-              <div class="card-front__bt">
-                <p class="card-front__text-view card-front__text-view--city">
-                  Áo hàn quốc
-                </p>
-              </div>
-            </div>
-            <div class="card-back">
-              <img style="height: 240px;width: 240px" src="https://aothudong.com/upload/product/atd-462/ao-phao-dang-dai-nam-tre-trung-4.jpg">
-            </div>
-          </div>
-        </div>
-
-        <div class="inside-page">
-          <div class="inside-page__container">
-            <h3 class="inside-page__heading inside-page__heading--city">
-              Áo khoác
-            </h3>
-            <p>
-              Xuất xứ: Quảng Châu
-            </p>
-            <p>
-              Sản xuất:	Công nghiệp
-            </p>
-            <p >
-              Giá: 799.000 Đ
-              <span class="lb-small-price">(880.000 Đ)</span>
-            </p>
-            <a href="#" class="inside-page__btn inside-page__btn--ski">View deals</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </section>
-  <section class="card-area">
-
-    <!-- Card: City -->
-    <section class="card-section">
-      <div class="card">
-        <div class="flip-card">
-          <div class="flip-card__container">
-            <div class="card-front">
-              <div class="card-front__tp card-front__tp--city">
-               <img style="height: 200px;width: 250px" src="https://aothudong.com/upload/product/atd-467/ao-khoac-phao-lot-long-cao-cap.jpg">
-              </div>
-
-              <div class="card-front__bt">
-                <p class="card-front__text-view card-front__text-view--city">
-                  Áo hàn quốc
-                </p>
-              </div>
-            </div>
-            <div class="card-back">
-              <img style="height: 240px;width: 240px" src="https://aothudong.com/upload/product/atd-467/ao-khoac-phao-lot-long-cao-cap-3.jpg">
-            </div>
-          </div>
-        </div>
-
-        <div class="inside-page">
-          <div class="inside-page__container">
-            <h3 class="inside-page__heading inside-page__heading--city">
-              Áo khoác
-            </h3>
-            <p>
-              Xuất xứ: Quảng Châu
-            </p>
-            <p>
-              Sản xuất:	Công nghiệp
-            </p>
-            <p >
-              Giá: 799.000 Đ
-              <span class="lb-small-price">(880.000 Đ)</span>
-            </p>
-            <a href="#" class="inside-page__btn inside-page__btn--ski">View deals</a>
-          </div>
-        </div>
-      </div>
-    </section>    <!-- Card: City -->
-    <section class="card-section">
-      <div class="card">
-        <div class="flip-card">
-          <div class="flip-card__container">
-            <div class="card-front">
-              <div class="card-front__tp card-front__tp--city">
-               <img style="height: 200px;width: 250px" src="https://aothudong.com/upload/product/atd-426/ao-phao-nam-xanh-dep-hang-hieu.jpg">
-              </div>
-
-              <div class="card-front__bt">
-                <p class="card-front__text-view card-front__text-view--city">
-                  Áo ấm
-                </p>
-              </div>
-            </div>
-            <div class="card-back">
-              <img style="height: 240px;width: 240px" src="https://aothudong.com/upload/product/atd-426/ao-phao-nam-xanh-dep-hang-hieu-3.jpg">
-            </div>
-          </div>
-        </div>
-
-        <div class="inside-page">
-          <div class="inside-page__container">
-            <h3 class="inside-page__heading inside-page__heading--city">
-              Áo khoác lông
-            </h3>
-            <p>
-              Xuất xứ: Quảng Châu
-            </p>
-            <p>
-              Sản xuất:	Công nghiệp
-            </p>
-            <p >
-              Giá: 799.000 Đ
-              <span class="lb-small-price">(880.000 Đ)</span>
-            </p>
-            <a href="#" class="inside-page__btn inside-page__btn--ski">View deals</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="card-section">
-      <div class="card">
-        <div class="flip-card">
-          <div class="flip-card__container">
-            <div class="card-front">
-              <div class="card-front__tp card-front__tp--city">
-               <img style="height: 200px;width: 250px" src="https://aothudong.com/upload/product/atd-425/ao-phao-nam-ghi-dep-hang-hieu.jpg">
-              </div>
-
-              <div class="card-front__bt">
-                <p class="card-front__text-view card-front__text-view--city">
-                  Áo phao
-                </p>
-              </div>
-            </div>
-            <div class="card-back">
-              <img style="height: 240px;width: 240px" src="https://aothudong.com/upload/product/atd-425/ao-phao-nam-ghi-dep-hang-hieu-3.jpg">
-            </div>
-          </div>
-        </div>
-
-        <div class="inside-page">
-          <div class="inside-page__container">
-            <h3 class="inside-page__heading inside-page__heading--city">
-              Áo khoác
-            </h3>
-            <p>
-              Xuất xứ: Quảng Châu
-            </p>
-            <p>
-              Sản xuất:	Công nghiệp
-            </p>
-            <p >
-              Giá: 799.000 Đ
-              <span class="lb-small-price">(880.000 Đ)</span>
-            </p>
-            <a href="#" class="inside-page__btn inside-page__btn--ski">View deals</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="card-section">
-      <div class="card">
-        <div class="flip-card">
-          <div class="flip-card__container">
-            <div class="card-front">
-              <div class="card-front__tp card-front__tp--city">
-               <img style="height: 200px;width: 250px" src="https://aothudong.com/upload/product/atd-462/ao-phao-dang-dai-nam-tre-trung.jpg">
-              </div>
-
-              <div class="card-front__bt">
-                <p class="card-front__text-view card-front__text-view--city">
-                  Áo dạ
-                </p>
-              </div>
-            </div>
-            <div class="card-back">
-              <img style="height: 240px;width: 240px" src="https://aothudong.com/upload/product/atd-462/ao-phao-dang-dai-nam-tre-trung-4.jpg">
-            </div>
-          </div>
-        </div>
-
-        <div class="inside-page">
-          <div class="inside-page__container">
-            <h3 class="inside-page__heading inside-page__heading--city">
-              Áo khoác
-            </h3>
-            <p>
-              Xuất xứ: Quảng Châu
-            </p>
-            <p>
-              Sản xuất:	Công nghiệp
-            </p>
-            <p >
-              Giá: 799.000 Đ
-              <span class="lb-small-price">(880.000 Đ)</span>
-            </p>
-            <a href="#" class="inside-page__btn inside-page__btn--ski">View deals</a>
-          </div>
-        </div>
-      </div>
-    </section>
   </section>
 
+  <div class="row mt-5 text-center">
+    <div>
+      <button type="button" *ngIf="pageSize < (total$ | async)&&action" class="btn btn-primary"
+              (click)="nextPage()">XEM THÊM
+      </button>
+    </div>
+  </div>
 </main>
 </body>
 

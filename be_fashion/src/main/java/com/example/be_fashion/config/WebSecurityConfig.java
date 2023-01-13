@@ -50,7 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable().
                 authorizeRequests()
                 .antMatchers("/api/public/**",
-                        "/api/customer/**"
+                        "/api/customer/**",
+                        "/api/fashion/**"
 //                        "/api/smartphone/**",
 //                        "/oauth/google",
 //                        "/api/booking/**"
