@@ -6,6 +6,7 @@ import {HomeComponent} from './home/home.component';
 import { LoginComponent } from '../decentralization/login/login.component';
 import { CartComponent } from './cart/cart.component';
 import { DetailComponent } from './detail/detail.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DetailComponent } from './detail/detail.component';
   DetailComponent],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    FormsModule
   ]
 })
 export class HomeModule { }

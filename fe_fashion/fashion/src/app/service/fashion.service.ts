@@ -1,15 +1,16 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {TokenStorageService} from "./token-storage.service";
-import {Observable} from "rxjs";
-import {SearchResult} from "../model/search-result";
-import {ListFashion} from "../dto/list-fashion";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {TokenStorageService} from './token-storage.service';
+import {Observable} from 'rxjs';
+import {SearchResult} from '../model/search-result';
+import {ListFashion} from '../dto/list-fashion';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FashionService {
-  URL_API = '${environment.api_url}';
+  URL_API = `${environment.api_url}`;
   httpOptions: any;
 
   constructor(private httpClient: HttpClient, private tokenService: TokenStorageService) {
@@ -24,8 +25,8 @@ export class FashionService {
   }
 
   findAllListFashion(name: string, size: number): Observable<SearchResult<ListFashion>> {
+    const API_URL_HOME = this.URL_API + '/fashion/list/home?size=' + size + '&name=' + name;
     console.log(this.URL_API + '/fashion/list/home?name=' + name + '&size=' + size);
-    const API_URL_HOME = this.URL_API + '/fashion/list/home?name=' + name + '&size=' + size;
     return this.httpClient.get<SearchResult<ListFashion>>(API_URL_HOME);
   }
 }

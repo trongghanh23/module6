@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
-import {ListFashion} from "../../dto/list-fashion";
-import {HomeService} from "../../service/home.service";
-import {TokenStorageService} from "../../service/token-storage.service";
-import {FashionService} from "../../service/fashion.service";
-import {Title} from "@angular/platform-browser";
-import {Router} from "@angular/router";
+import {BehaviorSubject, Observable} from 'rxjs';
+import {ListFashion} from '../../dto/list-fashion';
+import {HomeService} from '../../service/home.service';
+import {TokenStorageService} from '../../service/token-storage.service';
+import {FashionService} from '../../service/fashion.service';
+import {Title} from '@angular/platform-browser';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',

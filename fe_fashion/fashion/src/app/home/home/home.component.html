@@ -1,53 +1,71 @@
 <body>
 <main class="main">
+  <div class="row mt-3">
+    <div class="col-4"></div>
+    <div class="col-4"> <form class="d-flex mx-2" role="search">
+      <input class="form-control me-2" type="search" placeholder="Nhập tên tìm kiếm"[(ngModel)]="fashionNameSearch" aria-label="Search">
+      <button  (click)="paginate(fashionNameSearch,pageSize)"type="button" class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 20 20">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+        </svg>
+      </button>
+    </form></div>
+    <div class="col-4"></div>
 
-  <section class="card-area"*ngIf="action">
 
-    <!-- Card: City -->
-    <section class="card-section" *ngFor="let item of (fashionList$ |async)">
-      <div class="card">
-        <div class="flip-card">
-          <div class="flip-card__container">
-            <div class="card-front">
-              <div class="card-front__tp card-front__tp--city">
-               <img style="height: 200px;width: 250px" src="{{item.image}}">
+  </div>
+
+
+  <div class="row" *ngIf="action">
+    <div class="col-lg" *ngFor="let item of (fashionList$ |async)">
+      <section class="card-area">
+
+        <!-- Card: City -->
+
+        <section class="card-section col-lg">
+          <div class="card">
+            <div class="flip-card">
+              <div class="flip-card__container">
+                <div class="card-front">
+                  <div class="card-front__tp card-front__tp--city">
+                    <img style="height: 200px;width: 250px" src="{{item.image}}">
+                  </div>
+
+                  <div class="card-front__bt">
+                    <p class="card-front__text-view card-front__text-view--city">
+                      {{item.nameFashion}}
+                    </p>
+                  </div>
+                </div>
+                <div class="card-back">
+                  <img style="height: 240px;width: 240px" src="{{item.image}}">
+                </div>
               </div>
+            </div>
 
-              <div class="card-front__bt">
-                <p class="card-front__text-view card-front__text-view--city">
-                 {{item.nameFashion}}
+            <div class="inside-page">
+              <div class="inside-page__container">
+                <h3 class="inside-page__heading inside-page__heading--city">
+                  {{item.nameFashion}}
+                </h3>
+                <p>
+                  Xuất xứ:{{item.producer}}
                 </p>
+                <p>
+                  Chất liệu:  {{item.material}}
+                </p>
+                <p>
+                  Giá: {{item.price}}
+                  <span class="lb-small-price">({{item.price}})</span>
+                </p>
+                <a routerLink="/detail" class="inside-page__btn inside-page__btn--ski">View deals</a>
               </div>
             </div>
-            <div class="card-back">
-              <img style="height: 240px;width: 240px" src="{{item.image}}">
-            </div>
           </div>
-        </div>
-
-        <div class="inside-page">
-          <div class="inside-page__container">
-            <h3 class="inside-page__heading inside-page__heading--city">
-              {{item.nameFashion}}
-            </h3>
-            <p>
-             Xuất xứ:{{item.producer}}
-            </p>
-            <p>
-              Chất liệu:	{{item.material}}
-            </p>
-            <p >
-              Giá: {{item.price}}
-              <span class="lb-small-price">({{item.price}})</span>
-            </p>
-            <a routerLink="/detail" class="inside-page__btn inside-page__btn--ski">View deals</a>
-          </div>
-        </div>
-      </div>
-    </section>    <!-- Card: City -->
-
-  </section>
-
+        </section>    <!-- Card: City -->
+      </section>
+    </div>
+  </div>
   <div class="row mt-5 text-center">
     <div>
       <button type="button" *ngIf="pageSize < (total$ | async)&&action" class="btn btn-primary"

@@ -49,7 +49,7 @@ public class SecurityController {
     public String test() {
         return "ok";
     }
-    @PostMapping("/login/")
+    @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));

@@ -10,7 +10,7 @@ public class BeFashionApplication {
     public static void main(String[] args) {
         SpringApplication.run(BeFashionApplication.class, args);
 //        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        System.out.println(passwordEncoder.encode("12345"));
+//        System.out.println(passwordEncoder.encode("123456"));
 
     }
 
