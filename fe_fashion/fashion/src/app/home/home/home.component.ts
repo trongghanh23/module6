@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {ListFashion} from '../../dto/list-fashion';
+import {ListFashionDto} from '../../dto/list-fashion-dto';
 import {HomeService} from '../../service/home.service';
 import {TokenStorageService} from '../../service/token-storage.service';
 import {FashionService} from '../../service/fashion.service';
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   isCustomer = false;
   isAdmin = false;
   pageSize = 8;
-  fashionList$: Observable<ListFashion[]> | undefined;
+  fashionList$: Observable<ListFashionDto[]> | undefined;
   total$: Observable<number>;
   fashionNameSearch = '';
   action: boolean;
@@ -35,8 +35,8 @@ export class HomeComponent implements OnInit {
     this.title.setTitle('Trang chủ');
   }
   ngOnInit(): void {
-    this.showUsername();
     this.paginate(this.fashionNameSearch, this.pageSize);
+    this.showUsername();
     window.scroll({
       top: 0,
       left: 0,
@@ -53,9 +53,10 @@ export class HomeComponent implements OnInit {
 
   paginate(fashionNameSearch, pageSize) {
     this.fashionService.findAllListFashion(fashionNameSearch, pageSize).subscribe(data => {
+      console.log(fashionNameSearch);
       if (data != null) {
         this.action = true;
-        this.fashionList$ = new BehaviorSubject<ListFashion[]>(data.content);
+        this.fashionList$ = new BehaviorSubject<ListFashionDto[]>(data.content);
         console.log(this.fashionList$);
         this.total$ = new BehaviorSubject<number>(data.totalElements);
       } else {

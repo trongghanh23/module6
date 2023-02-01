@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {TokenStorageService} from './token-storage.service';
 import {Observable} from 'rxjs';
 import {SearchResult} from '../model/search-result';
-import {ListFashion} from '../dto/list-fashion';
+import {ListFashionDto} from '../dto/list-fashion-dto';
 import {environment} from '../../environments/environment';
 
 @Injectable({
@@ -23,10 +23,16 @@ export class FashionService {
       'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
     };
   }
+  findByUsername(): Observable<any> {
+    return this.httpClient.get<any>(this.URL_API + '/fashion/get/customer/', this.httpOptions);
+  }
 
-  findAllListFashion(name: string, size: number): Observable<SearchResult<ListFashion>> {
+  findAllListFashion(name: string, size: number): Observable<SearchResult<ListFashionDto>> {
     const API_URL_HOME = this.URL_API + '/fashion/list/home?size=' + size + '&name=' + name;
-    console.log(this.URL_API + '/fashion/list/home?name=' + name + '&size=' + size);
-    return this.httpClient.get<SearchResult<ListFashion>>(API_URL_HOME);
+    return this.httpClient.get<SearchResult<ListFashionDto>>(API_URL_HOME);
+  }
+
+  listCart(id: number): Observable<ListFashionDto[]> {
+    return this.httpClient.get<ListFashionDto[]>(this.URL_API + '/booking/list/cart/' + id);
   }
 }

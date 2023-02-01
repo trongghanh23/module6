@@ -22,6 +22,15 @@ public interface IListFashionDto {
 
     String getNameSize();
     String getPrice();
+    Integer getIdOrder();
+    Integer getQuantity();
+    String getTimeBookSmartphone();
+
+    Integer getIdCustomer();
+    String getNameCustomer();
+    String getEmail();
+    String getAddress();
+    String getPhoneNumber();
 
 
 }

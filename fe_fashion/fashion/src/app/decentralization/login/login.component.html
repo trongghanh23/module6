@@ -1,5 +1,6 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" xmlns="http://www.w3.org/1999/html">
   <div id="login-box">
+
     <div class="left">
       <h1>Đăng nhập</h1>
       <div> <span class="text-danger"
@@ -8,22 +9,21 @@
             Vui lòng nhập tài khoản !</span>
         <input type="text" name="username" placeholder="Username" formControlName="username"/></div>
       <div> <span class="text-danger"
-                         *ngIf="formGroup.controls.password.hasError('required')
+                  *ngIf="formGroup.controls.password.hasError('required')
                   && formGroup.controls.password.dirty">
             Vui lòng nhập mật khẩu !</span>
-        <input type="password"  placeholder="Password" formControlName="password"/></div>
+        <input type="password" placeholder="Password" formControlName="password"/></div>
 
-      <input type="submit" value="Đăng nhập" />
-      <p>Bạn chưa có tài khoản ? Hãy</p>
+      <input type="submit" value="Đăng nhập"/>
+      <p class="mt-4">Bạn chưa có tài khoản ? Hãy</p>
       <input type="submit" name="signup_submit" value="Đăng ký"/>
     </div>
-
-    <div class="right">
-      <span class="loginwith">Đăng nhập với<br/>mạng xã hội</span>
-
+    <div class="right mt-5">
       <button class="social-signin facebook">Đăng nhập với facebook</button>
       <button class="social-signin google">Đăng nhập với Google+</button>
     </div>
     <div class="or">OR</div>
+
+
   </div>
 </form>

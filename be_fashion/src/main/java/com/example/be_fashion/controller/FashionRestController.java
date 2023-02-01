@@ -2,6 +2,8 @@ package com.example.be_fashion.controller;
 
 import com.example.be_fashion.dto.IListFashionDto;
 import com.example.be_fashion.jwt.JwtTokenUtil;
+import com.example.be_fashion.model.customer.Customer;
+import com.example.be_fashion.service.customer.ICustomerService;
 import com.example.be_fashion.service.fashion.IFashionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,12 +13,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/fashion")
 public class FashionRestController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private ICustomerService iCustomerService;
     @Autowired
     private IFashionService iFashionService;
 
@@ -31,4 +37,13 @@ public class FashionRestController {
         }
         return new ResponseEntity<>(iListFashion,HttpStatus.OK);
     }
+    @GetMapping("/get/customer")
+    public ResponseEntity<Customer> getCustomerByUsername(HttpServletRequest request) {
+        String headerAuth = request.getHeader("Authorization");
+        String username = jwtTokenUtil.getUsernameFromJwtToken(headerAuth.substring(7));
+        System.out.println(username);
+        Customer customer = iCustomerService.findCustomerByUsername(username);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
+    }
+
 }

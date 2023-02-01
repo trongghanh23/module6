@@ -51,7 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 .antMatchers("/api/public/**",
                         "/api/customer/**",
-                        "/api/fashion/**"
+                        "/api/fashion/**",
+                        "/api/booking/**"
 //                        "/api/smartphone/**",
 //                        "/oauth/google",
 //                        "/api/booking/**"
@@ -66,6 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/admin/**").access("hasRole('ROLE_ADMIN')")
+
                 .anyRequest()
                 .authenticated()
 

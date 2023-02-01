@@ -1,4 +1,4 @@
-export interface ListFashion {
+export interface ListFashionDto {
   idFashion?: number;
   material?: string;
   nameFashion?: string;
@@ -11,4 +11,13 @@ export interface ListFashion {
   idSize?: number;
   nameSize?: string;
   price?: string;
+  idOrder?: number;
+  quantity?: number;
+  timeBookingSmartphone?: string;
+  idCustomer?: number;
+  nameCustomer?: string;
+  email?: string;
+  address?: string;
+  phoneNumber?: string;
+
 }
