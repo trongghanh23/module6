@@ -35,4 +35,16 @@ export class FashionService {
   listCart(id: number): Observable<ListFashionDto[]> {
     return this.httpClient.get<ListFashionDto[]>(this.URL_API + '/booking/list/cart/' + id);
   }
+
+  cartCount(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.URL_API + '/booking/cart/count/' + id);
+  }
+
+  ascQuantity(id: number): Observable<void> {
+    return this.httpClient.get<void>(this.URL_API + '/booking/asc/quantity/' + id);
+  }
+
+  descQuantity(id: number): Observable<void> {
+    return this.httpClient.get<void>(this.URL_API + '/booking/desc/quantity/' + id);
+  }
 }

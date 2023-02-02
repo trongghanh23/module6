@@ -1,13 +1,16 @@
 package com.example.be_fashion.repository;
 
+import com.example.be_fashion.dto.IBookingDto;
 import com.example.be_fashion.dto.IListFashionDto;
 import com.example.be_fashion.model.fashion.OrderFashion;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 public interface IOrderFashionRepository extends JpaRepository<OrderFashion,Integer> {
@@ -22,5 +25,19 @@ public interface IOrderFashionRepository extends JpaRepository<OrderFashion,Inte
             "and order_fashion.status=0 " +
             "and order_fashion.customer_id = :id",nativeQuery = true)
     List<IListFashionDto>orderFashion(@Param("id")Integer id);
+    @Query(value = "select count(id) as cartCount " +
+            "from order_fashion " +
+            "where order_fashion.customer_id= :id " +
+            "and  order_fashion.is_delete = 0  " +
+            "and order_fashion.status = 0 ",nativeQuery = true)
+    Optional<IBookingDto> getCartCount(@Param("id") Integer id);
+
+    @Modifying
+    @Query(value = "update order_fashion set quantity = (quantity + 1) where id = :id and status = 0", nativeQuery = true)
+    void ascQuantity(@Param("id") Integer id);
+
+    @Modifying
+    @Query(value = "update order_fashion set quantity = (quantity - 1) where id = :id and status = 0", nativeQuery = true)
+    void descQuantity(@Param("id") Integer id);
 
 }

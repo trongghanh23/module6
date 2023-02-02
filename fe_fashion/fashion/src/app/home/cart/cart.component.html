@@ -5,46 +5,36 @@
     <tr>
       <th style="width:50%">Sản phẩm</th>
       <th style="width:10%">Giá bán</th>
-      <th style="width:8%">Số lượng</th>
+      <th style="width:8% ;text-align: center" colspan="3">Số lượng</th>
       <th style="width:22%" class="text-center">Tổng tiền</th>
       <th style="width:10%"> Loại bỏ</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let item of cart; index as i">
     <tr>
       <td data-th="Product">
         <div class="row">
-          <div class="col-sm-2 hidden-xs"><img style="height:150px;width: 150px" src="https://aothudong.com/upload/product/atd-465/thumb/ao-phao-nam-lot-long-hang-hieu_x270.jpg" alt="..." class="img-responsive"/>
+          <div class="col-sm-2 hidden-xs"><img style="height:150px;width: 150px" src="{{item.image}}" alt="..."
+                                               class="img-responsive"/>
           </div>
-
         </div>
       </td>
-      <td data-th="Price">$1.99</td>
+      <td data-th="Price">{{item.price}}</td>
       <td data-th="Quantity">
-        <input type="number" class="form-control text-center" value="1">
+        <input class="btn btn-danger" type="button" *ngIf="item.quantity > 1" (click)="descQuantity(item.idOrder)"value="-">
       </td>
-      <td data-th="Subtotal" class="text-center">1.99</td>
+      <td>
+        <input type="button" class=" btn btn-light" value="{{item.quantity}}">
+      </td>
+      <td>
+        <input class="btn btn-success" type="button"(click)="ascQuantity(item.idOrder)"value="+">
+      </td>
+      <td data-th="Subtotal" class="text-center">{{item.quantity * item.price|number}}</td>
       <td class="actions" data-th="">
         <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
       </td>
     </tr>
-    <tr>
-      <td data-th="Product">
-        <div class="row">
-          <div class="col-sm-2 hidden-xs"><img style="height:150px;width: 150px" src="https://aothudong.com/upload/product/atd-465/thumb/ao-phao-nam-lot-long-hang-hieu_x270.jpg" alt="..." class="img-responsive"/>
-          </div>
 
-        </div>
-      </td>
-      <td data-th="Price">$1.99</td>
-      <td data-th="Quantity">
-        <input type="number" class="form-control text-center" value="1">
-      </td>
-      <td data-th="Subtotal" class="text-center">1.99</td>
-      <td class="actions" data-th="">
-        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
-      </td>
-    </tr>
     </tbody>
   </table>
   <div class="row ">
@@ -52,18 +42,18 @@
       <div class="customer-login payment-details mt-30">
         <h4 class="title-1 title-border text-uppercase">Thông tin khách hàng</h4>
         <table>
-          <tbody>
+          <tbody *ngFor="let item of cart; index as i">
           <tr>
             <td class="text-left">Họ và tên:</td>
-            <td class="text-right"><span class="order-cart mx-4">Nguyễn văn a</span></td>
+            <td class="text-right"><span class="order-cart mx-4">{{item.nameCustomer}}</span></td>
           </tr>
           <tr>
             <td class="text-left">Số điện thoại:</td>
-            <td class="text-right"><span class="order-cart mx-4">090999987</span></td>
+            <td class="text-right"><span class="order-cart mx-4">{{item.phoneNumber}}</span></td>
           </tr>
           <tr>
             <td class="text-left">Địa chỉ:</td>
-            <td class="text-right"><span class="order-cart mx-4">Đà nẵng</span></td>
+            <td class="text-right"><span class="order-cart mx-4">{{item.address}}</span></td>
           </tr>
           </tbody>
         </table>
@@ -76,24 +66,26 @@
         <table>
           <tbody>
           <tr>
-            <td class="text-left">Tổng sản phẩm:</td>
-            <td class="text-right"><span class="order-cart mx-4">799.000 Đ</span></td>
+            <td class="text-left">Tổng đơn hàng</td>
+            <td class="text-right"><span class="order-cart mx-4">{{cartCount}}</span></td>
           </tr>
           <tr>
-            <td class="text-left">Tổng đơn hàng:</td>
-            <td class="text-right"><span class="order-cart mx-4">799.000 Đ</span></td>
+            <td class="text-left">Tổng tiền</td>
+            <td class="text-right"><span class="order-cart mx-4">{{finalPrice}}</span></td>
           </tr>
           <tr>
             <td class="text-right ">
               <button type="button" class="btn btn-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-2-back" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-credit-card-2-back" viewBox="0 0 16 16">
                   <path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z"></path>
-                  <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z"></path>
+                  <path
+                    d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z"></path>
                 </svg>
                 Thanh toán
               </button>
             </td>
-<!--            <td class="text-right"><span class="order-cart mx-4"></span></td>-->
+            <!--            <td class="text-right"><span class="order-cart mx-4"></span></td>-->
 
 
           </tr>
