@@ -9,10 +9,12 @@ public class OrderFashion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(columnDefinition = "DATETIME")
     private String timeBookingFashion;
     @Column(columnDefinition = "boolean default 0")
     private boolean isDelete;
     private int quantity;
+    @Column(columnDefinition = "boolean default 0")
     private boolean status;
 
 

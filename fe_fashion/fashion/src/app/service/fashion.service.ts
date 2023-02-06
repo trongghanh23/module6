@@ -47,4 +47,13 @@ export class FashionService {
   descQuantity(id: number): Observable<void> {
     return this.httpClient.get<void>(this.URL_API + '/booking/desc/quantity/' + id);
   }
+  addToCart(quantity: number, customerId: number, fashionId: number): Observable<void> {
+    return this.httpClient.get<void>(this.URL_API + '/booking/add/cart/' + quantity + '&' + customerId + '&' + fashionId);
+  }
+  findById(id: number): Observable<ListFashionDto> {
+    return this.httpClient.get<ListFashionDto>(this.URL_API + '/fashion/detail/' + id);
+  }
+  payFashion(id: number): Observable<void> {
+    return this.httpClient.get<void>(this.URL_API + '/booking/pay/fashion/' + id);
+  }
 }

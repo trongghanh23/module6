@@ -13,4 +13,6 @@ public interface IOrderFashionService {
     void ascQuantity(Integer id);
 
     void descQuantity( Integer id);
+    void addFashion(Integer quantity, Integer customerId,Integer fashionId);
+    void payBookingFashion( Integer id);
 }

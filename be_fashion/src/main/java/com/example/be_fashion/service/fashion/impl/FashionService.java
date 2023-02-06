@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class FashionService implements IFashionService {
     @Autowired
@@ -16,4 +18,11 @@ public class FashionService implements IFashionService {
     public Page<IListFashionDto> listFashion(Pageable pageable, String name) {
         return iFashionRepository.listFashion(pageable, name);
     }
+
+    @Override
+    public Optional<IListFashionDto> detailFashion(Integer id) {
+        return iFashionRepository.detailFashion(id);
+    }
+
+
 }

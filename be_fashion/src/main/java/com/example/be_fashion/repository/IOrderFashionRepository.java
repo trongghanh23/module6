@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -39,5 +40,28 @@ public interface IOrderFashionRepository extends JpaRepository<OrderFashion,Inte
     @Modifying
     @Query(value = "update order_fashion set quantity = (quantity - 1) where id = :id and status = 0", nativeQuery = true)
     void descQuantity(@Param("id") Integer id);
+
+    @Query(value = "select * from order_fashion where status = 0 and is_delete = 0 and customer_id = :customerId " +
+            "and fashion_id = :fashionId", nativeQuery = true)
+    Optional<OrderFashion> getBookingFashionCart(@Param("customerId") Integer customerId,
+                                                      @Param("fashionId") Integer fashionId);
+
+    @Modifying
+    @Query(value = "insert into order_fashion (time_booking_fashion , quantity, customer_id,fashion_id) " +
+            "value (now(),:quantity,:customerId,:fashionId) ", nativeQuery = true)
+    void addFashion(@Param("quantity") Integer quantity,
+                       @Param("customerId") Integer customerId,
+                       @Param("fashionId") Integer fashionId);
+        @Modifying
+        @Query(value = "update order_fashion set quantity = :quantity where status = 0 and customer_id = :customerId " +
+                "and fashion_id = :fashionId", nativeQuery = true)
+        void setQuantityFashion(@Param("quantity") Integer quantity,
+                                   @Param("customerId") Integer customerId,
+                                   @Param("fashionId") Integer fashionId);
+    @Modifying
+    @Query(value = "update order_fashion set order_fashion.status = 1 where order_fashion.customer_id = :id " +
+            "and is_delete = 0 and order_fashion.status = 0 ", nativeQuery = true)
+    void payBookingFashion(@Param("id") Integer id);
+
 
 }

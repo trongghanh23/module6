@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row mt-5 ">
     <div class="col-lg-3"></div>
-    <div class="col-lg-6">
+    <div class="col-lg-6" *ngIf="fashion !=null">
       <div class="card mb-3" style="max-width: 550px;height: 440px">
         <div class="row g-0 mt-3">
           <div class="col-md-7">
@@ -9,7 +9,7 @@
               <div class="row"><div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active" data-bs-interval="10000">
-                    <img src="https://aothudong.com/upload/product/atd-465/thumb/ao-phao-nam-lot-long-hang-hieu_x270.jpg" class="d-block w-100" alt="...">
+                    <img src="{{fashion.image}}" class="d-block w-100" alt="...">
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -24,7 +24,7 @@
 
               <div class="row mt-4">
                 <div class="col-lg-7 ">
-                  <button type="button" class="btn btn-primary mx-1" >
+                  <button type="button" (click)="addToCart()" class="btn btn-primary mx-1" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                       <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"></path>
                       <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
@@ -49,12 +49,12 @@
           </div>
           <div class="col-md-5">
             <div class="card-body">
-              <h5 class="card-title">Áo thu đông</h5>
-              <p class="card-text"><small class="text-muted">Nhà sản xuất: <b>China</b></small></p>
-              <p class="card-text"><small class="text-muted">Chất liệu<b>áo lông</b></small></p>
+              <h5 class="card-title">{{fashion.nameFashion}}</h5>
+              <p class="card-text"><small class="text-muted">Nhà sản xuất: <b>{{fashion.producer}}</b></small></p>
+              <p class="card-text"><small class="text-muted">Chất liệu<b>{{fashion.material}}</b></small></p>
               <p class="card-text"><small class="text-muted">Size<b>s/m/l</b></small></p>
-              <p class="card-text"><small class="text-muted">thể loại<b>nam</b></small></p>
-              <p class="card-text"><small class="text-muted">phong cách<b>mùa thu</b></small></p>
+              <p class="card-text"><small class="text-muted">thể loại<b>{{fashion.nameFashionType}}</b></small></p>
+              <p class="card-text"><small class="text-muted">phong cách<b>{{fashion.nameSeasonal}}</b></small></p>
 
 
             </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FashionService} from '../../service/fashion.service';
-import {ListFashionDto} from "../../dto/list-fashion-dto";
+import {ListFashionDto} from '../../dto/list-fashion-dto';
+import Swal from 'sweetalert2';
+import {render} from 'creditcardpayments/creditCardPayments';
 
 @Component({
   selector: 'app-cart',
@@ -52,5 +54,49 @@ export class CartComponent implements OnInit {
       this.getCart();
     });
   }
+  submit(price: number) {
+    if (!this.action) {
+      this.action = true;
+      this.usd = price / 25000;
+      this.total = this.usd.toString();
+      render(
+        {
+          id: '#myPaypal',
+          value: this.total,
+          currency: 'USD',
+          onApprove: (details) => {
+            this.payFashion();
+          }
+        }
+      );
 
+    } else {
+      this.action = false;
+    }
+  }
+  payFashion(): void {
+    this.fashionService.findByUsername().subscribe(customer => {
+      this.fashionService.payFashion(customer.id).subscribe(value => {
+      });
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        text: 'Cảm ơn quý khách !',
+        title: 'Đã thanh toán thành công',
+        showConfirmButton: false,
+      });
+      window.setTimeout(this.loadPage, 500);
+    }, error => {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        text: 'Xin lỗi quý khách !',
+        title: 'Thanh toán thất bại !',
+        showConfirmButton: false,
+      });
+    });
+  }
+  loadPage(): void {
+    window.location.replace('/cart');
+  }
 }

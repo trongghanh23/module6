@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -44,6 +45,14 @@ public class FashionRestController {
         System.out.println(username);
         Customer customer = iCustomerService.findCustomerByUsername(username);
         return new ResponseEntity<>(customer, HttpStatus.OK);
+    }
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Optional<IListFashionDto>> detailFashion (@PathVariable Integer id){
+        Optional<IListFashionDto> detailFashion = iFashionService.detailFashion(id);
+        if (!detailFashion.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(detailFashion, HttpStatus.OK);
     }
 
 }

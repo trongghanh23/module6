@@ -35,8 +35,8 @@ export class HomeComponent implements OnInit {
     this.title.setTitle('Trang chủ');
   }
   ngOnInit(): void {
-    this.paginate(this.fashionNameSearch, this.pageSize);
     this.showUsername();
+    this.paginate(this.fashionNameSearch, this.pageSize);
     window.scroll({
       top: 0,
       left: 0,

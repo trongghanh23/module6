@@ -5,6 +5,7 @@ import com.example.be_fashion.dto.IListFashionDto;
 import com.example.be_fashion.model.fashion.OrderFashion;
 import com.example.be_fashion.service.cart.IOrderFashionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,18 @@ public class OrderFashionRestController {
     @GetMapping("/desc/quantity/{id}")
     public ResponseEntity<OrderFashion> descQuantity(@PathVariable("id") Integer id) {
         iOrderFashionService.descQuantity(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/add/cart/{quantity}&{customerId}&{fashionId}")
+    public ResponseEntity<OrderFashion> addCart(@PathVariable("quantity") Integer quantity,
+                                                @PathVariable("customerId") Integer customerId,
+                                                @PathVariable("fashionId")Integer fashionId){
+        iOrderFashionService.addFashion(quantity, customerId, fashionId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/pay/fashion/{id}")
+    public ResponseEntity<OrderFashion> payBookingFashion(@PathVariable("id") Integer id) {
+        iOrderFashionService.payBookingFashion(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
