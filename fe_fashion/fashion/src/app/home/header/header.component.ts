@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import Swal from "sweetalert2";
-import {Router} from "@angular/router";
-import {HomeService} from "../../service/home.service";
-import {TokenStorageService} from "../../service/token-storage.service";
+import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
+import {HomeService} from '../../service/home.service';
+import {TokenStorageService} from '../../service/token-storage.service';
 
 @Component({
   selector: 'app-header',

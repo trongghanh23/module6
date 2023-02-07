@@ -99,4 +99,40 @@ export class CartComponent implements OnInit {
   loadPage(): void {
     window.location.replace('/cart');
   }
+  deleteCart(id: number): void {
+    Swal.fire({
+      title: 'Bạn có chắc?',
+      text: 'Xóa sản phẩm này khỏi giỏ hàng!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Có, tôi muốn xóa!',
+      cancelButtonText: 'Đóng'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.fashionService.deleteCart(id).subscribe(() => {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer);
+              toast.addEventListener('mouseleave', Swal.resumeTimer);
+            }
+          });
+
+          Toast.fire({
+            icon: 'success',
+            title: 'Xóa khỏi giỏ hàng thành công!'
+          });
+
+          location.reload();
+        }, error => {
+        });
+      }
+    });
+  }
 }

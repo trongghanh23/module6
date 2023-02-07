@@ -1,11 +1,14 @@
 package com.example.be_fashion.service.cart.impl;
 
 import com.example.be_fashion.dto.IBookingDto;
+import com.example.be_fashion.dto.IHistoryDto;
 import com.example.be_fashion.dto.IListFashionDto;
 import com.example.be_fashion.model.fashion.OrderFashion;
 import com.example.be_fashion.repository.IOrderFashionRepository;
 import com.example.be_fashion.service.cart.IOrderFashionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,6 +56,16 @@ public class OrderFashionService implements IOrderFashionService {
         iOrderFashionRepository.payBookingFashion(id);
 
     }
+    @Override
+    public void deleteCart(Integer id) {
+        iOrderFashionRepository.deleteCart(id);
+    }
+
+    @Override
+    public Page<IHistoryDto> getAllHistory(String username, Pageable pageable) {
+        return iOrderFashionRepository.getAllHistory(username, pageable);
+    }
+
 }
 
 

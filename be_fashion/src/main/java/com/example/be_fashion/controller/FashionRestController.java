@@ -54,5 +54,9 @@ public class FashionRestController {
         }
         return new ResponseEntity<>(detailFashion, HttpStatus.OK);
     }
-
+    @GetMapping("/find/all/customer/{username}")
+    public ResponseEntity<?> findAllCustomer(@PathVariable(value = "username") String username) {
+        Customer customer = iCustomerService.findCustomerByUsername(username);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
+    }
 }

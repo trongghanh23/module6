@@ -1,11 +1,15 @@
 package com.example.be_fashion.controller;
 
 import com.example.be_fashion.dto.IBookingDto;
+import com.example.be_fashion.dto.IHistoryDto;
 import com.example.be_fashion.dto.IListFashionDto;
 import com.example.be_fashion.model.fashion.OrderFashion;
 import com.example.be_fashion.service.cart.IOrderFashionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +23,15 @@ import java.util.Optional;
 public class OrderFashionRestController {
     @Autowired
     private IOrderFashionService iOrderFashionService;
+    @GetMapping("/history/{username}")
+    public ResponseEntity<Page<IHistoryDto>> getAllHistory(@PageableDefault Pageable pageable, @PathVariable(value = "username") String username) {
+        Page<IHistoryDto> historyDtoPage = iOrderFashionService.getAllHistory(username, pageable);
+        if (historyDtoPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(historyDtoPage, HttpStatus.OK);
 
+    }
     @GetMapping("list/cart/{id}")
     public ResponseEntity<List<IListFashionDto>> showCartByUser(@PathVariable("id") Integer id) {
         List<IListFashionDto> cart = iOrderFashionService.orderFashion(id);
@@ -57,6 +69,11 @@ public class OrderFashionRestController {
     @GetMapping("/pay/fashion/{id}")
     public ResponseEntity<OrderFashion> payBookingFashion(@PathVariable("id") Integer id) {
         iOrderFashionService.payBookingFashion(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/delete/cart/{id}")
+    public ResponseEntity<OrderFashion> deleteCart(@PathVariable("id") Integer id) {
+        iOrderFashionService.deleteCart(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

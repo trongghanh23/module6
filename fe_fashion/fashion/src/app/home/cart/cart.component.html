@@ -31,67 +31,40 @@
       </td>
       <td data-th="Subtotal" class="text-center">{{item.quantity * item.price|number}}</td>
       <td class="actions" data-th="">
-        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+        <button (click)="deleteCart(item.idOrder)" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
       </td>
     </tr>
 
     </tbody>
   </table>
+</div>
+<div class="container">
   <div class="row ">
-    <div class="col-lg-6">
-      <div class="customer-login payment-details mt-30">
-        <h4 class="title-1 title-border text-uppercase">Thông tin khách hàng</h4>
-        <table>
-          <tbody *ngFor="let item of cart; index as i">
-          <tr>
-            <td class="text-left">Họ và tên:</td>
-            <td class="text-right"><span class="order-cart mx-4">{{item.nameCustomer}}</span></td>
-          </tr>
-          <tr>
-            <td class="text-left">Số điện thoại:</td>
-            <td class="text-right"><span class="order-cart mx-4">{{item.phoneNumber}}</span></td>
-          </tr>
-          <tr>
-            <td class="text-left">Địa chỉ:</td>
-            <td class="text-right"><span class="order-cart mx-4">{{item.address}}</span></td>
-          </tr>
-          </tbody>
-        </table>
-        <input name="total" class="order-total-val" type="hidden" value="799000">
-      </div>
+  <div class="col-lg-6"*ngFor="let item of cart; index as i">
+    <h4 >Thông tin khách hàng</h4>
+    <div>{{item.nameCustomer}}
     </div>
-    <div class="col-lg-6">
-      <div class="customer-login payment-details mt-30">
-        <h4 class="title-1 title-border text-uppercase">Chi tiết thanh toán</h4>
-        <table>
-          <tbody>
-          <tr>
-            <td class="text-left">Tổng đơn hàng</td>
-            <td class="text-right"><span class="order-cart mx-4">{{cartCount}}</span></td>
-          </tr>
-          <tr>
-            <td class="text-left">Tổng tiền</td>
-            <td class="text-right"><span class="order-cart mx-4">{{finalPrice|number}}</span></td>
-          </tr>
-          <tr>
-            <td class="text-right "*ngIf="!action">
-              <button (click)="submit(finalPrice)" type="button" class="btn btn-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-credit-card-2-back" viewBox="0 0 16 16">
-                  <path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z"></path>
-                  <path
-                    d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z"></path>
-                </svg>
-                Thanh toán
-              </button>
-            </td>
-            <div (click)="payFashion()" id="myPaypal" ></div>
-
-
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <div>{{item.phoneNumber}}</div>
+    <div>{{item.address}}</div>
   </div>
 </div>
+  <div class="col-lg-6">
+      <h4 >Chi tiết thanh toán</h4>
+    <div> {{cartCount}}</div>
+    <div>{{finalPrice|number}} </div>
+          <div class="text-right "*ngIf="!action">
+            <button (click)="submit(finalPrice)" type="button" class="btn btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                   class="bi bi-credit-card-2-back" viewBox="0 0 16 16">
+                <path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z"></path>
+                <path
+                  d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z"></path>
+              </svg>
+              Thanh toán
+            </button>
+          </div>
+          <div (click)="payFashion()" id="myPaypal" ></div>
+    </div>
+</div>
+
+
